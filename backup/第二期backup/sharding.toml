@@ -1,0 +1,14 @@
+[[shard]]
+name = "xiaoqizhou"
+idx = 0
+address = "localhost:8080"
+
+[[shard]]
+name = "xiawuyue"
+idx = 1
+address = "localhost:8081"
+
+[[shard]]
+name = "mengzhi"
+idx = 2
+address = "localhost:8082"
