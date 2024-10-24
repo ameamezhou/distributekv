@@ -61,3 +61,20 @@ s@DESKTOP-OFHN64T MINGW64 /e/zhoulearn/go-distributekv (master)
 $ curl "http:///127.0.0.1:9090/get?rand=$(date +%s)&key=a"
 value = "zhou", err = <nil>
 
+第二期 shard id 相关逻辑效果展示
+s@DESKTOP-OFHN64T MINGW64 ~/Desktop
+$ curl "http:///127.0.0.1:9090/set?rand=$(date +%s)&key=a&value=zhou"
+err = <nil>, hash = [175 99 189 76 134 1 183 190] // 这里应该是用了 h.Sum(nil) 导致的
+
+s@DESKTOP-OFHN64T MINGW64 ~/Desktop
+$ curl "http:///127.0.0.1:9090/set?rand=$(date +%s)&key=a&value=zhou"
+err = <nil>, hash = 12638153115695167422
+
+s@DESKTOP-OFHN64T MINGW64 ~/Desktop
+$ curl "http:///127.0.0.1:9090/set?rand=$(date +%s)&key=a&value=zhou"
+err = <nil>, hash = 12638153115695167422, shardId = 0
+
+s@DESKTOP-OFHN64T MINGW64 ~/Desktop
+$ curl "http:///127.0.0.1:9090/set?rand=$(date +%s)&key=b&value=zhou2"
+err = <nil>, hash = 12638153115695167421, shardId = 2
+
